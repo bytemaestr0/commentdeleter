@@ -77,6 +77,7 @@ def find_and_delete_strings(file_path, strings_to_find, search_at_start=True):
             print(f"Lines deleted successfully.")
 
         # Get user input for output file option
+        clear()
         print("Do you want to save the updated file as '" + file_name + "' or '" + file_name + ".updated'? (Default is '" + file_path + "')")
         print(file_name + " = 1")
         print(file_name + ".updated = 2")
@@ -91,6 +92,7 @@ def find_and_delete_strings(file_path, strings_to_find, search_at_start=True):
         else:
             print("Saving as '" + file_name + "' by default.")
             updated_file_path = file_path
+        clear()
 
         # Write the updated lines to the output file
         with open(updated_file_path, 'w') as file:
@@ -112,11 +114,10 @@ if __name__ == "__main__":
     clear()
     strings_to_find = input("Enter strings to find (e.g., 'example', 'test'): ").split(',')
     clear()
-    search_at_start_input = input("Do you want to search for the given strings only at the start of the line? (leave blank for yes): ")
-    search_at_start = search_at_start_input.lower() != 'n' if search_at_start_input else True
+    search_at_start_input = input("Do you want to search for the given strings only at the start of the line? (leave blank for no): ")
+    search_at_start = search_at_start_input.lower() != 'n' if search_at_start_input else False
     clear()
 
     # Call the function to find and delete lines
     
     find_and_delete_strings(file_path, strings_to_find, search_at_start)
- 
