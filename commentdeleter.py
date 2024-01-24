@@ -1,4 +1,4 @@
-# Written by ByteMaestr0 
+# Written by ByteMaestr0
 # Mainly used to delete comments from program(lines that start with: #, //, /*;)
 # Importing the os library to work with file paths
 import os
@@ -9,8 +9,8 @@ def extract_file_name(file_path):
     file_name = os.path.basename(file_path)
     return file_name
 
-# Function to find and delete lines containing specified characters in a file
-def find_and_delete_lines(file_path, characters_to_find):
+# Function to find and delete lines containing specified strings in a file
+def find_and_delete_strings(file_path, strings_to_find):
     # Calling the function to extract the filename from the file path
     file_name = extract_file_name(file_path)
 
@@ -20,16 +20,16 @@ def find_and_delete_lines(file_path, characters_to_find):
             # Read all lines from the file into a list
             lines = file.readlines()
 
-        # Find lines containing specified characters
-        matching_lines = [i + 1 for i, line in enumerate(lines) if any(char in line for char in characters_to_find)]
+        # Find lines containing specified strings
+        matching_lines = [i + 1 for i, line in enumerate(lines) if any(string in line for string in strings_to_find)]
 
         # If no matching lines are found, print a message and return
         if not matching_lines:
             print("No matching lines found.")
             return
 
-        # Display lines containing the specified characters
-        print("Lines containing the specified characters:")
+        # Display lines containing the specified strings
+        print("Lines containing the specified strings:")
         for i, line_number in enumerate(matching_lines):
             print(f"{line_number}) {lines[line_number - 1].rstrip()}")
 
@@ -82,9 +82,9 @@ def find_and_delete_lines(file_path, characters_to_find):
 
 # Main program
 if __name__ == "__main__":
-    # Get user input for file location and characters to find
+    # Get user input for file location and strings to find
     file_path = input("Enter the file location (e.g., /x/y/z): ")
-    characters_to_find = input("Enter characters to find (e.g., xy): ")
+    strings_to_find = input("Enter strings to find (e.g., 'example', 'test'): ").split(',')
 
     # Call the function to find and delete lines
-    find_and_delete_lines(file_path, characters_to_find)
+    find_and_delete_strings(file_path, strings_to_find)
